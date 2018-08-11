@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: page.language | default: " en " }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <meta name="author" content="Lior Kedmi" />
+  <meta name="copyright" content="The HTML Couple" />
+
+  {% asset style.css %}
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="author" href="humans.txt">
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "Masta",
+      "headline": "We create better web",
+      "description": "We’re masta, aka, the HTML couple. We’re front-end developers. We create better web.",
+      "url": "http://thehtmlcouple.com/"
+    }
+  </script>
+</head>
+
+<body class="page">
+  
+  <header class="header">
+    <div class="logo">
+        {% asset logo_2x.png
+          srcset:width="222 1x" 
+          srcset:width="444 2x" 
+          width="222" 
+          height="63" 
+          alt="Masta. We create better web."
+        %}
+      />
+    </div>
+
+    <div class="tagline">
+      <h1>We create better web.</h1>
+    </div>
+
+    <div class="ghost">
+      <svg id="ghost" enable-background="new 0 0 24 32" height="32" overflow="visible" viewBox="0 0 24 32" width="24" xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g>
+          <g id="Layer_2">
+            <g id="Green_x5F_pacman_ghost">
+              <path d="M12,0C5.373,0,0,5.373,0,12v20l3-3l3,3l3-3l3,3l3-3l3,3l3-3l3,3V12        C24,5.373,18.627,0,12,0z" fill="#34B67A"
+                id="Body" />
+              <path d="M21.325,11.125C20.775,10.444,19.943,10,19,10        c-1.657,0-3,1.343-3,3s1.343,3,3,3c0.943,0,1.775-0.445,2.325-1.125C20.555,14.597,20,13.866,20,13        S20.554,11.403,21.325,11.125z"
+                fill="#E6E6E6" id="Right_x5F_eye" />
+              <path d="M13.325,11.125C12.775,10.444,11.943,10,11,10        c-1.657,0-3,1.343-3,3s1.343,3,3,3c0.943,0,1.775-0.445,2.325-1.125C12.555,14.597,12,13.866,12,13        S12.554,11.403,13.325,11.125z"
+                fill="#E6E6E6" id="Left_x5F_eye" />
+              <path d="M22,13c0-0.713-0.26-1.36-0.675-1.875        C20.554,11.403,20,12.134,20,13s0.555,1.597,1.325,1.875C21.74,14.36,22,13.713,22,13z"
+                fill="#25374B" id="Right_x5F_eyeball" />
+              <path d="M14,13c0-0.713-0.26-1.36-0.675-1.875        C12.554,11.403,12,12.134,12,13s0.555,1.597,1.325,1.875C13.74,14.36,14,13.713,14,13z"
+                fill="#25374B" id="Left_x5F_eyeball" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </header>
+
+  <main class="page-content" aria-label="Content">
+    {{ content }}
+  </main>
+
+  <footer class="footer">
+    <a href="/humans.txt">made by humans</a> / <a class="typeform-share" href="https://masta.typeform.com/to/za75hO" data-mode="2">contact us</a>
+  </footer>
+  
+  <!-- Contact-->
+  <script>
+    (function () {
+      var qs, js, q, s, d = document,
+        gi = d.getElementById,
+        ce = d.createElement,
+        gt = d.getElementsByTagName,
+        id = 'typef_orm',
+        b = 'https://s3-eu-west-1.amazonaws.com/share.typeform.com/';
+      if (!gi.call(d, id)) {
+        js = ce.call(d, 'script');
+        js.id = id;
+        js.src = b + 'share.js';
+        q = gt.call(d, 'script')[0];
+        q.parentNode.insertBefore(js, q)
+      }
+      id = id + '_';
+      if (!gi.call(d, id)) {
+        qs = ce.call(d, 'link');
+        qs.rel = 'stylesheet';
+        qs.id = id;
+        qs.href = b + 'share-button.css';
+        s = gt.call(d, 'head')[0];
+        s.appendChild(qs, s)
+      }
+    })()
+  </script>
+
+  <!-- Ghost animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+  <script>
+    var ghost = document.getElementById("ghost");
+    var padding = 25;
+    var windowWidth = (window.innerWidth > 1024 ? 1024 : window.innerWidth - (2 * padding));
+    var ghostTween = new TimelineMax({
+      repeat: -1,
+      repeatDelay: 0
+    });
+    ghostTween.from(ghost, 3, {
+        x: 0,
+        y: 0,
+        ease: Power4.easeInOut
+      })
+      .to(ghost, 10, {
+        x: windowWidth - ghost.clientWidth,
+        y: 0
+      })
+      .to(ghost, 0.25, {
+        rotationY: 180
+      })
+      .to(ghost, 10, {
+        x: 0,
+        y: 0
+      }, '+=3')
+      .to(ghost, 0.25, {
+        rotationY: 0
+      })
+      .play();
+  </script>
+  
+</body>
+</html>
