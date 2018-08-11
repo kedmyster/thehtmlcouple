@@ -20,6 +20,9 @@ Technology
 Jekyll - Static site generator
 jekyllrb.com
 
+Firebase - Hosting the site
+firebase.google.com
+
 TravisCI - Automatic deployment
 travis-ci.org
 
