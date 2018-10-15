@@ -516,6 +516,9 @@ footer.footer::after{
 .home .projects .project .project-name h3{
     display:inline-block
 }
+.home .projects .project .project-name h3 a{
+    text-decoration: underline;
+}
 .home .projects .project .project-description{
     font-size:18px
 }
